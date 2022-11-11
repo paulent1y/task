@@ -1,42 +1,92 @@
 package by.paulent1y;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Task3 {
 
-    private final static int ARRAY_LENGTH = 40;
-
+    private static int arrayLength = 40;
+    private static int[] array;
+    private static Scanner scanner;
     public static void main(String[] args) {
 
-        //вводить массивы ручками то еще удовольствие, со школы помню, так что тут просто сгенерированные
-
         System.out.println("Задание 3: \nСоставить алгоритм: на входе есть числовой массив, необходимо вывести элементы массива кратные 3");
-        System.out.print("Исходный массив натуральных чисел: \n");
+        checkAnswer();
 
-        int[] nat = new int[ARRAY_LENGTH];
-        for (int i = 0; i < ARRAY_LENGTH; i++) {
-            nat[i] = i+1;
-        }
-
-        printArray(nat, false);
-        System.out.println("Элементы кратные трем:");
-        printArray(nat, true);
-
-        System.out.print("\nИсходный массив случайных чисел (-250,250): \n");
-        int[] rand = new int[ARRAY_LENGTH];
-        for (int i = 0; i < ARRAY_LENGTH; i++) {
-            rand[i] = new Random().nextInt(500) - 250;
-        }
-        printArray(rand, false);
-        System.out.println("Элементы кратные трем:");
-        printArray(rand, true);
     }
 
-    private static void printArray(int[] array, boolean multipleOf3){
+    private static void checkAnswer(){
+        System.out.println("Хотите вводить числа вручную? \n(Y/y/N/n):");
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+        if (answer.toLowerCase().equals("y"))
+        {
+            manualArray();
+        }
+        else if (answer.toLowerCase().equals("n")) {
+            naturalArray();
+            randomArray();
+        }
+        else {
+            System.out.println("Нераспознанный ответ, давайте еще раз");
+            checkAnswer();
+        }
+    }
+    private static void manualArray(){
+        scanner = new Scanner(System.in);
+        System.out.println("ладна...  \nдлина массива будет: ");
+        arrayLength = inputNumber();
+        array = new int[arrayLength];
+        System.out.println("Теперь вводим " + arrayLength + " значений в массив: ");
+        for (int i = 0; i < arrayLength; i++) {
+            System.out.println((i+1) + ": ");
+            array[i] = inputNumber();
+        }
+        System.out.println("Спасибо, вот результат:");
+        printArray(array);
+    }
+
+    private static int inputNumber(){
+        int answer = 0;
+        try {
+            answer = scanner.nextInt();
+        }
+        catch (Exception e) {
+            System.out.println("Сломал, давай по новой");
+            checkAnswer();
+        }
+        return answer;
+    }
+
+
+    private static void naturalArray(){
+        System.out.print("Массив натуральных чисел: \n");
+        array = new int[arrayLength];
+        for (int i = 0; i < arrayLength; i++) {
+            array[i] = i+1;
+        }
+        printArray(array);
+    }
+
+    private static void randomArray(){
+        System.out.print("\nМассив случайных чисел (-250,250): \n");
+        array = new int[arrayLength];
+        for (int i = 0; i < arrayLength; i++) {
+            array[i] = new Random().nextInt(500) - 250;
+        }
+        printArray(array);
+    }
+
+    private static void printArray(int[] array){
+        System.out.print("Весь массив: \n");
         for (int j : array) {
-            if (multipleOf3 && !(j % 3 == 0))
-                continue;
             System.out.print(j + ", ");
+        }
+        System.out.println("\b\b");
+        System.out.println("Элементы кратные трем:");
+        for (int j : array) {
+            if (j % 3 == 0)
+                System.out.print(j + ", ");
         }
         System.out.println("\b\b");
     }
