@@ -8,7 +8,7 @@ public class Task3 {
     private static int arrayLength = 40;
     private static int[] array;
     private static Scanner scanner;
-    public static void main(String[] args) {
+    public static void start() {
 
         System.out.println("Задание 3: \nСоставить алгоритм: на входе есть числовой массив, необходимо вывести элементы массива кратные 3");
         checkAnswer();
@@ -46,7 +46,7 @@ public class Task3 {
         printArray(array);
     }
 
-    private static int inputNumber(){
+    public static int inputNumber(){
         int answer = 0;
         try {
             answer = scanner.nextInt();
@@ -85,7 +85,7 @@ public class Task3 {
         System.out.println("\b\b");
         System.out.println("Элементы кратные трем:");
         for (int j : array) {
-            if (j % 3 == 0)
+            if (j % 3 == 0 && j!= 0)
                 System.out.print(j + ", ");
         }
         System.out.println("\b\b");

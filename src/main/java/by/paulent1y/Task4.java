@@ -4,11 +4,12 @@ public class Task4 {
 
     //пример работает только с () и []
     private static final String TASK_SEQUENCE = "[((())()(())]]";
-    private static final String RIGHT_SEQUENCE = "[((()))()[(())]]"; //[((())()(())]] -> [((())*)*()*[*(())]]
+    private static final String RIGHT_SEQUENCE = "[((()))()[(())]]"; //[((())()(())]] -> [((()) _)_ () _[_ (())]]
 
 
-    public static void main(String[] args) {
+    public static void start() {
         checkSequence(TASK_SEQUENCE);
+        System.out.println("Но если дописать парочку");
         checkSequence(RIGHT_SEQUENCE);
     }
 
