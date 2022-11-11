@@ -33,10 +33,10 @@ public class Task3 {
     }
 
     private static void printArray(int[] array, boolean multipleOf3){
-        for (int i = 0; i < array.length; i++) {
-            if (multipleOf3 && !(array[i]%3==0))
+        for (int j : array) {
+            if (multipleOf3 && !(j % 3 == 0))
                 continue;
-            System.out.print(array[i] + ", ");
+            System.out.print(j + ", ");
         }
         System.out.println("\b\b");
     }
